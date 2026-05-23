@@ -6,7 +6,8 @@ import { Switch } from '../ui/switch';
 import { Separator } from '../ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../ui/select';
-import { Settings as SettingsIcon, User, Bell, Shield, Palette, Database } from 'lucide-react';
+import { Settings as SettingsIcon, User, Bell, Shield, Palette, Database, Mail } from 'lucide-react';
+import { Badge } from '../ui/badge';
 
 export default function Settings() {
   return (

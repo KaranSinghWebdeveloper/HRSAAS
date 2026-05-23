@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -11,6 +11,7 @@ import { Briefcase, MapPin, DollarSign, Clock, Building2, Upload, CheckCircle2, 
 import { toast } from 'sonner';
 
 export default function ApplicationForm() {
+  const navigate = useNavigate();
   const { jobId } = useParams();
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -60,7 +61,7 @@ export default function ApplicationForm() {
                 </li>
               </ul>
             </div>
-            <Button onClick={() => window.location.href = '/'}>
+            <Button onClick={() => navigate('/')}>
               Back to Home
             </Button>
           </CardContent>

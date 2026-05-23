@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Input } from '../ui/input';
@@ -305,12 +305,12 @@ export default function CandidateManagement() {
                   </div>
 
                   <div className="flex gap-2">
-                    <Link to={`/candidates/${candidate.id}`} className="flex-1">
-                      <Button variant="outline" className="w-full" size="sm">
+                    <Button asChild variant="outline" className="w-full flex-1" size="sm">
+                      <Link to={`/candidates/${candidate.id}`}>
                         <ExternalLink className="w-3 h-3 mr-2" />
                         View Details
-                      </Button>
-                    </Link>
+                      </Link>
+                    </Button>
                     <Button variant="outline" size="sm">
                       <FileText className="w-3 h-3" />
                     </Button>

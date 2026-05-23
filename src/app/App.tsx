@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router';
-import { useState } from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Toaster } from './components/ui/sonner';
 import DashboardLayout from './components/layouts/DashboardLayout';
 import LoginPage from './components/pages/LoginPage';
@@ -19,20 +19,29 @@ import ApplicationForm from './components/pages/ApplicationForm';
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
+  useEffect(() => {
+    const storedAuth = localStorage.getItem('auth');
+    setIsAuthenticated(storedAuth === 'true');
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('auth', isAuthenticated ? 'true' : 'false');
+  }, [isAuthenticated]);
+
   return (
     <BrowserRouter>
       <div className="min-h-screen bg-background">
         <Routes>
           <Route
             path="/login"
-            element={<LoginPage onLogin={() => setIsAuthenticated(true)} />}
+            element={isAuthenticated ? <Navigate to="/" replace /> : <LoginPage onLogin={() => setIsAuthenticated(true)} />}
           />
           <Route
             path="/apply/:jobId"
             element={<ApplicationForm />}
           />
           {isAuthenticated ? (
-            <Route path="/" element={<DashboardLayout />}>
+            <Route path="/" element={<DashboardLayout onLogout={() => setIsAuthenticated(false)} />}>
               <Route index element={<Dashboard />} />
               <Route path="jobs" element={<JobManagement />} />
               <Route path="candidates" element={<CandidateManagement />} />

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router';
+import { useParams, Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
 import { Badge } from '../ui/badge';
@@ -138,11 +138,11 @@ export default function CandidateDetails() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Link to="/candidates">
-            <Button variant="ghost" size="icon">
+          <Button asChild variant="ghost" size="icon">
+            <Link to="/candidates">
               <ArrowLeft className="w-5 h-5" />
-            </Button>
-          </Link>
+            </Link>
+          </Button>
           <div>
             <h1 className="text-3xl font-bold text-foreground">Candidate Profile</h1>
             <p className="text-muted-foreground mt-1">Detailed candidate information and interview history</p>
@@ -153,12 +153,12 @@ export default function CandidateDetails() {
             <Download className="w-4 h-4 mr-2" />
             Download Resume
           </Button>
-          <Link to="/interviews">
-            <Button>
+          <Button asChild>
+            <Link to="/interviews">
               <Calendar className="w-4 h-4 mr-2" />
               Schedule Interview
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </div>
       </div>
 
@@ -350,8 +350,8 @@ export default function CandidateDetails() {
                             </div>
                             <Badge className={
                               interview.result === 'Pass' ? 'bg-green-500/10 text-green-700 dark:text-green-400' :
-                              interview.result === 'Pending' ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' :
-                              'bg-red-500/10 text-red-700 dark:text-red-400'
+                                interview.result === 'Pending' ? 'bg-amber-500/10 text-amber-700 dark:text-amber-400' :
+                                  'bg-red-500/10 text-red-700 dark:text-red-400'
                             }>
                               {interview.result}
                             </Badge>
@@ -391,11 +391,11 @@ export default function CandidateDetails() {
                               <Button size="sm" variant="outline" className="flex-1">
                                 Join Interview
                               </Button>
-                              <Link to={`/interviews/${index}/feedback`} className="flex-1">
-                                <Button size="sm" variant="outline" className="w-full">
-                                  Add Feedback
-                                </Button>
-                              </Link>
+                              <Button asChild size="sm" variant="outline" className="w-full flex-1">
+                                <Link to={`/interviews/${index}/feedback`}>
+                                  Give Feedback
+                                </Link>
+                              </Button>
                             </div>
                           )}
                         </CardContent>

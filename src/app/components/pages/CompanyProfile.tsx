@@ -97,9 +97,10 @@ export default function CompanyProfile() {
                     defaultValue="We are a leading technology company focused on innovation and excellence..."
                   />
                 </div>
-              </form>
-            </CardContent>
-          </Card>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Hiring Settings */}
